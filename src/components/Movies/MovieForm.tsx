@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 const MovieForm = ({onSubmit}) => {
   const [movie, setMovie] = useState<string>();
+  console.log('[MovieForm] change');
 
   const changeMovie = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMovie(prevState => event.target.value);
@@ -9,7 +10,8 @@ const MovieForm = ({onSubmit}) => {
 
   const onFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    onSubmit(movie)
+    onSubmit(movie);
+    event.target[0].value = '';
   };
 
   return (
@@ -18,6 +20,7 @@ const MovieForm = ({onSubmit}) => {
         <input
           onChange={changeMovie}
           type="text"
+          name="name"
           className="form-control"
           placeholder="Add some Movie..."
           aria-label="Add Movie"
