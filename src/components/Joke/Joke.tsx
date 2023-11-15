@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Joke = () => {
+interface Props {
+  text:string;
+}
+
+const Joke:React.FC<Props> = ({text}) => {
   return (
     <div>
-      
+      {text}
     </div>
   );
 };
