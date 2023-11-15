@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import MemoMovieItem from './MovieItem.tsx';
-import MovieForm from './MovieForm.tsx';
+import MovieForm from './MovieForm/MovieForm.tsx';
 import {Movie} from './types';
 
 

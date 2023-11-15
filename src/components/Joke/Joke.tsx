@@ -1,10 +1,10 @@
 import React from 'react';
 
 interface Props {
-  text:string;
+  text: string;
 }
 
-const Joke:React.FC<Props> = ({text}) => {
+const Joke: React.FC<Props> = ({text}) => {
   return (
     <div>
       {text}
