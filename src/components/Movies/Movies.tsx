@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
-import MovieItem from './MovieItem.tsx';
+import MemoMovieItem from './MovieItem.tsx';
 import MovieForm from './MovieForm.tsx';
+import {Movie} from './types';
 
-interface Movie {
-  id: number;
-  name: string;
-}
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -37,10 +34,9 @@ const Movies = () => {
 
   if (movies.length > 0) {
     listOfMovie = movies.map((movie) =>
-      <MovieItem
+      <MemoMovieItem
         key={movie.id}
-        id={movie.id}
-        name={movie.name}
+        movie={movie}
         onDelete={onDelete}
         onChange={onChange}
       />
@@ -48,12 +44,12 @@ const Movies = () => {
   }
 
   return (
-    <div>
+    <>
       <MovieForm onSubmit={onSubmit}/>
       <div>
         {movies.length ? listOfMovie : <div>Add some movie</div>}
       </div>
-    </div>
+    </>
   );
 };
 

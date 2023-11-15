@@ -1,18 +1,20 @@
 import React, {useState} from 'react';
+import {Movie} from './types';
 
 interface Props {
-  id: number;
-  name: string;
+  movie: Movie;
   onDelete: (name: string, id: number) => void;
   onChange: (id: number, newName: string) => void;
 }
 
-const MovieItem: React.FC<Props> = React.memo(({id, name, onDelete, onChange}) => {
-  const [currentName, setCurrentName] = useState<string>(name);
+const MemoMovieItem: React.FC<Props> = React.memo(function MovieItem({movie, onDelete, onChange}) {
+  const [currentName, setCurrentName] = useState<string>(movie.name);
+
+  console.log(movie.name + 'render Item');
 
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentName(event.target.value);
-    onChange(id, event.target.value);
+    onChange(movie.id, event.target.value);
   };
 
   return (
@@ -26,7 +28,7 @@ const MovieItem: React.FC<Props> = React.memo(({id, name, onDelete, onChange}) =
         aria-describedby="button"
       />
       <button
-        onClick={() => onDelete(name, id)}
+        onClick={() => onDelete(movie.name, movie.id)}
         className="btn btn-outline-danger"
         type="button"
         id="button"
@@ -35,7 +37,7 @@ const MovieItem: React.FC<Props> = React.memo(({id, name, onDelete, onChange}) =
     </div>
   );
 }, (prevProps, nextProps) => {
-  return prevProps.name === nextProps.name;
+  return prevProps.movie.name === nextProps.movie.name;
 });
 
-export default MovieItem;
+export default MemoMovieItem;
