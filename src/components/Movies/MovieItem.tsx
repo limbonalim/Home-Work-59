@@ -7,9 +7,8 @@ interface Props {
   onChange: (id: number, newName: string) => void;
 }
 
-const MovieItem: React.FC<Props> = ({id, name, onDelete, onChange}) => {
+const MovieItem: React.FC<Props> = React.memo(({id, name, onDelete, onChange}) => {
   const [currentName, setCurrentName] = useState<string>(name);
-  console.log('[MovieItem] change');
 
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentName(event.target.value);
@@ -35,6 +34,8 @@ const MovieItem: React.FC<Props> = ({id, name, onDelete, onChange}) => {
       </button>
     </div>
   );
-};
+}, (prevProps, nextProps) => {
+  return prevProps.name === nextProps.name;
+});
 
 export default MovieItem;

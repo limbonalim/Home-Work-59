@@ -9,7 +9,6 @@ interface Movie {
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  console.log('[Movies] change');
 
   const onSubmit = (name: string) => {
     const movie: Movie = {
@@ -34,22 +33,25 @@ const Movies = () => {
     }));
   };
 
-  const listOfMovie = movies.map((movie) =>
-    <MovieItem
-      key={movie.id}
-      id={movie.id}
-      name={movie.name}
-      onDelete={onDelete}
-      onChange={onChange}
-    />
-  );
+  let listOfMovie: React.JSX.Element[] | null;
 
+  if (movies.length > 0) {
+    listOfMovie = movies.map((movie) =>
+      <MovieItem
+        key={movie.id}
+        id={movie.id}
+        name={movie.name}
+        onDelete={onDelete}
+        onChange={onChange}
+      />
+    );
+  }
 
   return (
     <div>
       <MovieForm onSubmit={onSubmit}/>
       <div>
-        {listOfMovie}
+        {movies.length ? listOfMovie : <div>Add some movie</div>}
       </div>
     </div>
   );

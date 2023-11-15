@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 
 const MovieForm = ({onSubmit}) => {
   const [movie, setMovie] = useState<string>();
-  console.log('[MovieForm] change');
 
   const changeMovie = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMovie(prevState => event.target.value);
+    setMovie(event.target.value);
   };
 
   const onFormSubmit = (event: React.FormEvent) => {
