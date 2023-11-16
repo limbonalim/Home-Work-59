@@ -5,8 +5,8 @@ import Jokes from '../components/Joke/Jokes.tsx';
 
 const App = () => (
   <>
-    <Jokes/>
-    {/*<Movies/>*/}
+    {/*<Jokes/>*/}
+    <Movies/>
   </>
 );
 

@@ -10,8 +10,6 @@ interface Props {
 const MemoMovieItem: React.FC<Props> = React.memo(function MovieItem({movie, onDelete, onChange}) {
   const [currentName, setCurrentName] = useState<string>(movie.name);
 
-  console.log(movie.name + 'render Item');
-
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentName(event.target.value);
     onChange(movie.id, event.target.value);
