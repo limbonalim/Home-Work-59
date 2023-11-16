@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Joke from './Joke.tsx';
-import AddButtonMemo from '../AddButton/AddButton.tsx';
+import ButtonMemo from '../Button/Button.tsx';
 
 const url = 'https://api.chucknorris.io/jokes/random';
 const Jokes = () => {
@@ -69,8 +69,8 @@ const Jokes = () => {
 
   return (
     <>
-      <AddButtonMemo onClick={getOneJoke} name="Get One joke"/>
-      <AddButtonMemo onClick={getFiveJokes} name="Get Five Jokes"/>
+      <ButtonMemo onClick={getOneJoke} name="Get One joke"/>
+      <ButtonMemo onClick={getFiveJokes} name="Get Five Jokes"/>
       {jokes}
     </>
   );

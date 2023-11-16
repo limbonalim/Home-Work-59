@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import Movies from '../components/Movies/Movies.tsx';
 import Jokes from '../components/Joke/Jokes.tsx';
-import AddButtonMemo from '../components/AddButton/AddButton.tsx';
+import ButtonMemo from '../components/Button/Button.tsx';
 
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
   };
   return (
     <>
-      <AddButtonMemo onClick={onClick} name="Change" color="primary"/>
+      <ButtonMemo onClick={onClick} name="Change" color="primary"/>
       {window ? <Jokes/> : <Movies/>}
     </>
   );

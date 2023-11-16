@@ -6,7 +6,7 @@ interface Props {
   color?: 'primary' | 'success';
 }
 
-const AddButtonMemo: React.FC<Props> = React.memo(function AddButton({onClick, name, color = 'success'}) {
+const ButtonMemo: React.FC<Props> = React.memo(function Button({onClick, name, color = 'success'}) {
   const colorClass = `btn-${color}`;
   const style: string[] = ['btn', 'm-2', colorClass];
 
@@ -22,4 +22,4 @@ const AddButtonMemo: React.FC<Props> = React.memo(function AddButton({onClick, n
   return prevProps.name === nextProps.name;
 });
 
-export default AddButtonMemo;
+export default ButtonMemo;
