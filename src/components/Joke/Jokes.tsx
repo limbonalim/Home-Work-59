@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Joke from './Joke.tsx';
-import AddButtonMemo from './AddButton/AddButton.tsx';
+import AddButtonMemo from '../AddButton/AddButton.tsx';
 
 const url = 'https://api.chucknorris.io/jokes/random';
 const Jokes = () => {
@@ -10,11 +10,16 @@ const Jokes = () => {
   const [state, setState] = useState<boolean>(true);
 
   useEffect(() => {
+
     const getData = async () => {
-      const response: Response = await fetch(url);
-      if (response.ok) {
-        const data = await response.json();
-        setListOfJokes([data.value]);
+      try {
+        const response: Response = await fetch(url);
+        if (response.ok) {
+          const data = await response.json();
+          setListOfJokes([data.value]);
+        }
+      } catch (error: Error) {
+        alert(error);
       }
     };
     if (state) {
@@ -24,20 +29,26 @@ const Jokes = () => {
   }, [oneJoke]);
 
   useEffect(() => {
-    const getDataFiveTimes = (howMany: number = 5) => {
+    const getDataFiveTimes = async (howMany: number = 5) => {
+
       const responseArr: Promise<object>[] = [];
       for (let i = 0; i < howMany; i++) {
         responseArr.push(fetch(url));
       }
-      Promise.all(responseArr).then((response: Response[]) => {
-        setListOfJokes([]);
-        response.forEach(async (answer: Response) => {
-          if (answer.ok) {
-            let data = await answer.json();
-            setListOfJokes(prevState => [...prevState, data.value]);
-          }
+
+      try {
+        await Promise.all(responseArr).then((response: Response[]) => {
+          setListOfJokes([]);
+          response.forEach(async (answer: Response) => {
+            if (answer.ok) {
+              let data = await answer.json();
+              setListOfJokes(prevState => [...prevState, data.value]);
+            }
+          });
         });
-      });
+      } catch (error: Error) {
+        alert(error);
+      }
     };
     if (!state) {
       void getDataFiveTimes();

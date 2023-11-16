@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import Movies from '../components/Movies/Movies.tsx';
 import Jokes from '../components/Joke/Jokes.tsx';
-import AddButtonMemo from '../components/Joke/AddButton/AddButton.tsx';
+import AddButtonMemo from '../components/AddButton/AddButton.tsx';
 
 
 const App = () => {
