@@ -3,13 +3,17 @@ import React from 'react';
 interface Props {
   onClick: () => void;
   name: string;
+  color: 'primary' | 'success';
 }
 
-const AddButtonMemo: React.FC<Props> = React.memo(function AddButton({onClick, name}) {
+const AddButtonMemo: React.FC<Props> = React.memo(function AddButton({onClick, name, color= 'success'}) {
+  const colorClass = `btn-${color}`
+  const style: string[] = ['btn', 'm-2', colorClass];
+
   return (
     <>
       <button
-        className="btn btn-success m-2"
+        className={style.join(' ')}
         onClick={() => onClick()}
       >{name}</button>
     </>
