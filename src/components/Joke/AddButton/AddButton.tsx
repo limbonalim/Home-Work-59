@@ -9,7 +9,7 @@ const AddButtonMemo: React.FC<Props> = React.memo(function AddButton({onClick, n
   return (
     <>
       <button
-        className="btn btn-success"
+        className="btn btn-success m-2"
         onClick={() => onClick()}
       >{name}</button>
     </>

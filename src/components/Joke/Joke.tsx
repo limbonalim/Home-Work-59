@@ -6,7 +6,7 @@ interface Props {
 
 const Joke: React.FC<Props> = ({text}) => {
   return (
-    <div>
+    <div className="m-2 p-1 border border-primary rounded">
       {text}
     </div>
   );
