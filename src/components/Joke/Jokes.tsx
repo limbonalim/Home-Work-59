@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Joke from './Joke.tsx';
 import ButtonMemo from '../Button/Button.tsx';
+import SpinnerMemo from '../Spinner/Spinner.tsx';
 
 const url = 'https://api.chucknorris.io/jokes/random';
 const Jokes = () => {
@@ -8,16 +9,19 @@ const Jokes = () => {
   const [oneJoke, setOneJoke] = useState<boolean>(false);
   const [fiveJoke, setFiveJoke] = useState<boolean>(false);
   const [state, setState] = useState<boolean>(true);
+  const [showSpinner, setShowSpinner] = useState<boolean>(false);
 
   useEffect(() => {
 
     const getData = async () => {
       try {
+        setShowSpinner(true);
         const response: Response = await fetch(url);
         if (response.ok) {
           const data = await response.json();
           setListOfJokes([data.value]);
         }
+        setShowSpinner(false);
       } catch (error: Error) {
         alert(error);
       }
@@ -30,7 +34,7 @@ const Jokes = () => {
 
   useEffect(() => {
     const getDataFiveTimes = async (howMany: number = 5) => {
-
+      setShowSpinner(true);
       const responseArr: Promise<object>[] = [];
       for (let i = 0; i < howMany; i++) {
         responseArr.push(fetch(url));
@@ -46,6 +50,7 @@ const Jokes = () => {
             }
           });
         });
+        setShowSpinner(false);
       } catch (error: Error) {
         alert(error);
       }
@@ -71,7 +76,8 @@ const Jokes = () => {
     <>
       <ButtonMemo onClick={getOneJoke} name="Get One joke"/>
       <ButtonMemo onClick={getFiveJokes} name="Get Five Jokes"/>
-      {jokes}
+
+      {showSpinner? <SpinnerMemo show={showSpinner}/> : jokes}
     </>
   );
 };
